@@ -43,15 +43,17 @@ KFMP_figure3 <- ggplot(df_fig3_select_combined_data,
                        aes(x = insitu_count, 
                            y = video_count)) +
   geom_point(color = ifelse(df_fig3_select_combined_data$group == "Macrocystis Stipe Counts",
-                            "grey30", "grey30"),alpha = 0.5) +
+                            "#636B2F", #kelp color
+                            "#FF5000"), #Patiria color
+             alpha = 0.5) + #opacity
   geom_smooth(method = "lm", se = TRUE, aes(color = group)) +
   #1-1 line
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "black") +
   facet_wrap(~ group, scales = "free") +
   labs(x = expression(italic("In Situ") ~ "Counts"),
        y = "Video Counts") +
-  scale_color_manual(values = c("Macrocystis Stipe Counts" = "grey30",
-                                "Patiria Counts (Adjusted)" = "grey30")) +
+  scale_color_manual(values = c("Macrocystis Stipe Counts" = "#636B2F",
+                                "Patiria Counts (Adjusted)" = "#FF5000")) +
   #plot a and b labels
   geom_text(data = data.frame(
     group = c("Macrocystis Stipe Counts", "Patiria Counts (Adjusted)"),
